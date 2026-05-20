@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Saveur — Warm & Appetizing food delivery design system.
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Warm cream canvas */
+    --background: 36 40% 97%;
+    --foreground: 20 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 30% 12%;
+
+    /* Saffron / paprika red — appetite primary */
+    --primary: 14 88% 54%;
+    --primary-foreground: 36 40% 98%;
+    --primary-glow: 22 95% 62%;
+
+    /* Toasted cream */
+    --secondary: 32 50% 92%;
+    --secondary-foreground: 20 35% 18%;
+
+    --muted: 32 30% 94%;
+    --muted-foreground: 20 12% 42%;
+
+    /* Mustard accent */
+    --accent: 38 90% 56%;
+    --accent-foreground: 20 35% 14%;
+
+    /* Forest herb (used sparingly for badges) */
+    --herb: 145 40% 32%;
+    --herb-foreground: 36 40% 98%;
+
+    --destructive: 0 78% 52%;
+    --destructive-foreground: 36 40% 98%;
+
+    --border: 30 25% 88%;
+    --input: 30 25% 88%;
+    --ring: 14 88% 54%;
+
+    --radius: 1rem;
+
+    /* Surfaces */
+    --surface: 32 45% 95%;
+    --surface-strong: 28 40% 90%;
+    --ink: 20 35% 10%;
+
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(14 88% 54%) 0%, hsl(28 95% 60%) 50%, hsl(40 95% 62%) 100%);
+    --gradient-sunset: linear-gradient(180deg, hsl(36 80% 96%) 0%, hsl(28 70% 92%) 100%);
+    --gradient-ember: linear-gradient(135deg, hsl(8 78% 48%) 0%, hsl(14 88% 54%) 100%);
+    --gradient-cream: linear-gradient(180deg, hsl(36 50% 98%) 0%, hsl(32 45% 94%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 14px -4px hsl(20 30% 20% / 0.08), 0 2px 4px -2px hsl(20 30% 20% / 0.05);
+    --shadow-warm: 0 20px 40px -12px hsl(14 88% 54% / 0.25), 0 8px 16px -8px hsl(14 88% 54% / 0.15);
+    --shadow-elegant: 0 30px 60px -20px hsl(20 40% 15% / 0.18);
+    --shadow-glow: 0 0 60px hsl(22 95% 62% / 0.35);
+
+    /* Motion */
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 20 30% 8%;
+    --foreground: 36 40% 96%;
+    --card: 20 28% 11%;
+    --card-foreground: 36 40% 96%;
+    --popover: 20 28% 11%;
+    --popover-foreground: 36 40% 96%;
+    --primary: 14 88% 58%;
+    --primary-foreground: 20 30% 8%;
+    --secondary: 20 20% 16%;
+    --secondary-foreground: 36 40% 96%;
+    --muted: 20 18% 16%;
+    --muted-foreground: 32 15% 65%;
+    --accent: 38 90% 60%;
+    --accent-foreground: 20 30% 8%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 36 40% 96%;
+    --border: 20 18% 20%;
+    --input: 20 18% 20%;
+    --ring: 14 88% 58%;
+    --surface: 20 25% 12%;
+    --surface-strong: 20 22% 16%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+  ::selection { background: hsl(var(--primary) / 0.25); color: hsl(var(--ink)); }
+}
+
+@layer components {
+  .container-x { @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12; }
+
+  .text-gradient-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: hsl(var(--background) / 0.72);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-3xl border border-border/60;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth);
+  }
+  .card-elevated:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-warm { background: var(--gradient-warm); }
+  .bg-gradient-sunset { background: var(--gradient-sunset); }
+  .bg-gradient-ember { background: var(--gradient-ember); }
+  .bg-gradient-cream { background: var(--gradient-cream); }
+  .shadow-warm { box-shadow: var(--shadow-warm); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.7s var(--ease-smooth) both; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  80%, 100% { transform: scale(1.6); opacity: 0; }
+}
+.animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }

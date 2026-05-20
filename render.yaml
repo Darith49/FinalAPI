@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: projectapi
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "cd backend && gunicorn saveur.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://projectapi.onrender.com
